@@ -1,4 +1,4 @@
-# Encoder-Decoder
+# Relief Visualization Network (RV-Net)
 
 This repository is for the encoder-decoder pretext for the paper titled "Self Supervised Learning for Semantic Segmentation of Archaeological 
 Monuments in DTMs".
