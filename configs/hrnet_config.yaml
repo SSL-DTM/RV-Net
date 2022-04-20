@@ -1,0 +1,113 @@
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+GPUS: (0,1,2,3)
+OUTPUT_DIR: 'output'
+EXPERIMENT_NAME: 'myexperiment'
+LOG_DIR: 'log'
+WORKERS: 4
+PRINT_FREQ: 10
+
+DATASET:
+  ROOT: '/path/to/data'
+  TRAIN_DIR: 'train'
+  TEST_DIR: 'test'
+  VALID_DIR: 'valid'
+  LBL_DIRS:
+    - 'LD'
+    - 'SLRM'
+    - 'SLOPE'
+    - 'SVF64'
+  INPUT_CHANNELS: 1
+  NUM_OUTPUT_CHANNELS: 4
+  IMG_DIRS:
+    - 'DEM'
+MODEL:
+  NAME: hrnet
+  NUM_OUTPUTS: 1
+  PRETRAINED: ''
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    STAGE1:
+      NUM_MODULES: 1
+      NUM_RANCHES: 1
+      BLOCK: BOTTLENECK
+      NUM_BLOCKS:
+      - 4
+      NUM_CHANNELS:
+      - 64
+      FUSE_METHOD: SUM
+    STAGE2:
+      NUM_MODULES: 1
+      NUM_BRANCHES: 2
+      BLOCK: BASIC
+      NUM_BLOCKS:
+      - 4
+      - 4
+      NUM_CHANNELS:
+      - 48
+      - 96
+      FUSE_METHOD: SUM
+    STAGE3:
+      NUM_MODULES: 4
+      NUM_BRANCHES: 3
+      BLOCK: BASIC
+      NUM_BLOCKS:
+      - 4
+      - 4
+      - 4
+      NUM_CHANNELS:
+      - 48
+      - 96
+      - 192
+      FUSE_METHOD: SUM
+    STAGE4:
+      NUM_MODULES: 3
+      NUM_BRANCHES: 4
+      BLOCK: BASIC
+      NUM_BLOCKS:
+      - 4
+      - 4
+      - 4
+      - 4
+      NUM_CHANNELS:
+      - 48
+      - 96
+      - 192
+      - 384
+      FUSE_METHOD: SUM
+LOSS:
+  FUNCTION: 'mse'
+TRAIN:
+  BASE_SIZE: 224
+  BATCH_SIZE_PER_GPU: 208
+  BEGIN_EPOCH: 0
+  END_EPOCH: 200
+  EXTRA_EPOCH: 0
+  EXTRA_LR: 0.001
+  FREEZE_EPOCHS: -1
+  IGNORE_LABEL: -1
+  IMAGE_SIZE: [128, 128]
+  INIT_FN: xavier_normal_
+  LR: 0.001
+  LR_FACTOR: 0.1
+  LR_STEP: [90, 110]
+  MOMENTUM: 0.9
+  MULTI_SCALE: False
+  NESTEROV: False
+  NONBACKBONE_KEYWORDS: []
+  NONBACKBONE_MULT: 10
+  NUM_SAMPLES: 0
+  OPTIMIZER: SGD
+  RESUME: True
+  SCALE_FACTOR: 11
+  SHUFFLE: True
+  WD: 0.0001
+TEST:
+  IMAGE_SIZE:
+  - 224
+  - 224
+  BASE_SIZE: 224
+  BATCH_SIZE_PER_GPU: 1
+  MULTI_SCALE: false
