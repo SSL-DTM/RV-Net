@@ -39,4 +39,7 @@ To test a model, run:
 - `python tools/test.py --cfg configs/hrnet_config.yaml TEST.MODEL_FILE PATH/TO/SAVED/MODEL/best.pth GPUS 0`
 
 
+The pretrained model weights for RV-Net are available [here](https://github.com/SSL-DTM/model_weights/releases/download/v0.0.0/RVNet.pth). It can be used for initializing and finetuning semantic segmentation model. Check out the [semantic segmentation](https://github.com/SSL-DTM/semantic_segmentation) repo for how to do this.
+
+
 
