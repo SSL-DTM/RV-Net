@@ -33,10 +33,10 @@ To train a model using 4 GPUS, run:
 - `python -m torch.distributed.launch --nproc_per_node=4 tools/train.py --cfg configs/hrnet_config.yaml`
 
 To train a model using 2 GPUS, run:
-- `python -m torch.distributed.launch --nproc_per_node=2 tools/train.py --cfg configs/hrnet_config.yaml GPUS 0,1`
+- `python -m torch.distributed.launch --nproc_per_node=2 tools/train.py --cfg configs/hrnet_config.yaml GPUS 0,1,`
 
 To test a model, run:
-- `python tools/test.py --cfg configs/hrnet_config.yaml TEST.MODEL_FILE PATH/TO/SAVED/MODEL/best.pth GPUS 0`
+- `python tools/test.py --cfg configs/hrnet_config.yaml TEST.MODEL_FILE PATH/TO/SAVED/MODEL/best.pth GPUS 0,`
 
 
 The pretrained model weights for RV-Net are available [here](https://github.com/SSL-DTM/model_weights/releases/download/v0.0.0/RVNet.pth). It can be used for initializing and finetuning semantic segmentation model. Check out the [semantic segmentation](https://github.com/SSL-DTM/semantic_segmentation) repo for how to do this.
